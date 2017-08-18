@@ -21,3 +21,6 @@ summary(x)
 history(4)
 library()
 search()
+
+a=rnorm(10)
+a
