@@ -25,6 +25,7 @@ marks
 marks=ceiling(runif(50,0,100))
 marks
 cat(marks)
+?cat
 range(marks)
 ?range
 breaks=seq(0,100,by=10)
