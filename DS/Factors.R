@@ -43,10 +43,19 @@ fdiabetes
 fdiabetes[4] <- 'Type3'
 fdiabetes
 summary(fdiabetes)
-
-
-
-
+fdiabetes[4] <- 'Type3'
+fdiabetes
+fdiabetes[5] <- 'Type6'
+fdiabetes
+sum(is.na(fdiabetes))
+table(fdiabetes,exclude=NULL)
+table(fdiabetes,exclude=NA)
+is.na(fdiabetes)
+fdiabetes <- na.omit(fdiabetes)
+fdiabetes
+fdiabetes[1] <- 'Type4'
+fdiabetes
+summary(fdiabetes)
 
 
 
