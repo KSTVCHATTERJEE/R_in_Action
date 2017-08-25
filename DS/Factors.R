@@ -6,3 +6,7 @@ x2=factor(c("Low","Medium","High",ordered=T))
 x2
 x3=factor(c('yes','no','yes'),levels=c('yes','no'))
 x3
+gender <- c('M','F','F','M','F')
+gender
+g1 <- factor(gender)
+g1
