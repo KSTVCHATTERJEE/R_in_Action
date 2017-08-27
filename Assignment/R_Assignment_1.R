@@ -10,7 +10,9 @@ marks_Q2 <- c(10,12,13,14,17)
 marks_Q2
 mean_Q2_1 <- mean(marks_Q2)
 mean_Q2_1
-barplot(marks_Q2)
+obs=paste("Obs",1:5,sep='-')
+obs
+barplot(marks_Q2,xlab='Observations', ylab='Marks',names.arg = obs)
 
 #Q2_part2
 no_of_students <- c(5,7,9,8,4)
@@ -21,6 +23,7 @@ sum(freq_obs_Q2)
 sum(no_of_students)
 mean_Q2_2 <- sum(freq_obs_Q2)/sum(no_of_students)
 mean_Q2_2
+barplot(no_of_students,names.arg = marks_Q2,xlab='Marks',ylab='No. of students')
 
 #Q2_part3
 marks_lowerlimit <- c(10,20,30,40)
@@ -35,6 +38,9 @@ freq_obs_Q2_3 <- marks_midpoint*no_of_students_Q2_3
 freq_obs_Q2_3
 mean_Q2_3 <- sum(freq_obs_Q2_3)/sum(no_of_students_Q2_3)
 mean_Q2_3
+x_lab <- paste(marks_lowerlimit,marks_upperlimit,sep='-')
+x_lab
+barplot(no_of_students_Q2_3,names.arg = x_lab,xlab='Marks',ylab='No. of students')
 
 #Q3
 
