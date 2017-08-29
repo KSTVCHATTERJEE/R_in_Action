@@ -1,9 +1,9 @@
 #Q1
-marks_Q1 <- rep(c(10,20,30,10,40,50),c(3,5,2,4,3,4))
+marks_Q1 <- rep(c(10,20,30,10,40,50),c(3,5,2,2,4,4))
 marks_Q1
 table(marks_Q1)
 cbind(table(marks_Q1))
-pie(table(marks_Q1))
+mean(marks_Q1)
 
 #Q2_part1
 marks_Q2 <- c(10,12,13,14,17)
@@ -24,6 +24,15 @@ sum(no_of_students)
 mean_Q2_2 <- sum(freq_obs_Q2)/sum(no_of_students)
 mean_Q2_2
 barplot(no_of_students,names.arg = marks_Q2,xlab='Marks',ylab='No. of students')
+#text = (x=bb,y = students....., )
+#Q2_part2_other_way
+new=rep(marks_Q2,no_of_students)
+new
+table(new)
+cbind(table(new))
+mean(new)
+hist(new)
+hist(new,breaks=3)
 
 #Q2_part3
 marks_lowerlimit <- c(10,20,30,40)
@@ -41,6 +50,25 @@ mean_Q2_3
 x_lab <- paste(marks_lowerlimit,marks_upperlimit,sep='-')
 x_lab
 barplot(no_of_students_Q2_3,names.arg = x_lab,xlab='Marks',ylab='No. of students')
+
+#Q2_part3_new_way
+marks2c <- c("10-20","20-30","30-40","40-50")
+students2c <- c(5,7,9,8)
+df2c <- data.frame(marks2c,students2c)
+df2c
+str(df2c)
+midpt2c <- c(15,25,35,45)
+markstotal2c <- midpt2c * students2c
+df2c$mid2c = midpt2c
+df2c
+df2c$total <- df2c$students2c * df2c$mid2c
+df2c
+mean2c1 <- sum(df2c$total)/sum(df2c$students2c)
+mean2c1
+
+new1 <- rep(df2c$mid2c, df2c$students2c)
+table(new1)
+mean(new1)
 
 #Q3
 
