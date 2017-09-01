@@ -93,11 +93,42 @@ x
 mean(x)
 table(x)
 range(x)
-brks <- seq(20,100,10) #or brks <- seq(min(x),max(x),class size)
-brks
-x.cut <- cut(x, brks)
-x.cut
-x.table <- table(x.cut)
-x.table
-cbind(x.table)
-hist(x, breaks=10)
+x[c(1,2,3,4,5)] <- c(0,10,11,99,100)
+(brks <- seq(0,100,10)) #or brks <- seq(min(x),max(x),class size)
+#if we keep the statement within braces, we don't have to print the vector again
+#slabs : 0-10, 10-20, ....
+classint1 <- cut(x, breaks=brks)#default right=T
+head(classint1,n=5)
+head(x,n=5)
+table(classint1)
+table(classint1,useNA='ifany')
+classint2 <- cut(x,breaks=brks,right=F)
+head(classint2,n=5)
+head(x,n=5)
+table(classint2, useNA='ifany')
+
+#correct the problem of NA
+classint1a <- cut(x, breaks=brks, include.lowest = T)
+as.character(head(classint1a,n=5))
+head(x,n=5)
+table(classint1a, useNA='ifany')
+
+classint2a <- cut(x, breaks=brks, include.lowest=T, right=F)
+as.character(head(classint2a,n=5))
+head(x,n=5)
+table(classint2a,useNA='ifany')
+
+#Giving Labels
+LETTERS[1:length(brks)-1]
+length(brks)
+levels(classint1)
+classint1b <- cut(x, breaks=brks, include.lowest=T, 
+                  labels=LETTERS[1:length(brks)-1]) #default right=T 
+as.character(head(classint1b,n=5))
+head(x,n=5)
+table(classint1b,useNA='ifany')
+
+
+
+LETTERS[1:5]
+letters[1:6]
