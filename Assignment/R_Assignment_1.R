@@ -79,8 +79,25 @@ marks_Q3
 range(marks_Q3)
 breaks <- seq(0,100,by=10)
 breaks
-marks_Q3.cut <- cut(marks_Q3,breaks)
+marks_Q3.cut <- cut(marks_Q3,breaks,include.lowest = FALSE, right=TRUE)
 marks_Q3.cut
 marks_Q3.table <- table(marks_Q3.cut)
 marks_Q3.table
 cbind(marks_Q3.table)
+
+#Q3_new
+
+set.seed(1234)
+x=ceiling(rnorm(100,60,15))
+x
+mean(x)
+table(x)
+range(x)
+brks <- seq(20,100,10) #or brks <- seq(min(x),max(x),class size)
+brks
+x.cut <- cut(x, brks)
+x.cut
+x.table <- table(x.cut)
+x.table
+cbind(x.table)
+hist(x, breaks=10)
