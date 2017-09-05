@@ -73,3 +73,34 @@ table(classint1b,useNA='ifany')
 
 LETTERS[1:5]
 letters[1:6]
+
+
+par('mar')
+par('mai')
+
+
+par(mfrow=c(2,2)) #mfrow = Multiple Frames per row : Row-wise
+attach(mtcars)
+hist(mpg)
+hist(cyl)
+hist(wt)
+hist(hp)
+hist(qsec)
+par(mfcol=c(2,2)) #mfcol = Multiple Frames per col : Col-wise
+
+
+matrix(c(1,1,2,3),byrow=T,nrow=2)
+layout(matrix(c(1,1,2,3),byrow=T,nrow=2),widths=c(3,1),heights=c(1,2))
+#'widths' changes the width ratio to 3:1
+#'height' changes the height ratio to 1:2
+
+matrix(c(1,2,3,3,4,5),byrow=T,nrow=3)
+layout(matrix(c(1,2,3,3,4,5),byrow=T,nrow=3))
+
+plot.new()
+par(fig=c(0,0.8,0,0.8),new=TRUE) #c(X-axis margins, Y-axis margins)
+plot(wt,mpg)
+par(fig=c(0,0.8,0.7,1),new=TRUE)
+boxplot(wt,horizontal=TRUE,axes=FALSE)
+par(fig=c(0.7,1,0,0.8),new=TRUE)
+boxplot(mpg,axes=FALSE)
