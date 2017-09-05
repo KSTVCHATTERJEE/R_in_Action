@@ -59,7 +59,4 @@ marks_Q3.table <- table(marks_Q3.cut)
 marks_Q3.table
 cbind(marks_Q3.table)
 
-read.csv("Excel Workbook MSCDS.csv")
-class("Excel Workbook MSCDS.csv")
-v1=read.csv("Excel Workbook MSCDS.csv")
-class(v1)
+
