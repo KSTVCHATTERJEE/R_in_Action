@@ -25,6 +25,8 @@ df2$age > 30
 df2[df2$age > 30,][1:2]
 df2[df2$gender == 'M' & df2$course == 'PGDDS',][1:2]
 df2[df2$gender == 'M' & df2$course == 'PGDDS',1:2]
+df2[df2$gender == 'M' & df2$course == 'PGDDS',c(1,2)]
+df2[df2$gender == 'M' & df2$course == 'PGDDS',c('name','rollno')]
 summary(df2)
 str(df2)
 ?write.csv
@@ -36,3 +38,16 @@ save(markstotal,df2,file='./Data/KC2.RData') #save multiple objects in R
 save.image(file='./Data/KC3.RData') #save all current objects/multiple objects in R
 
 readRDS(file='./Data/KC.RDS')
+mydata = readRDS(file='./Data/KC.RDS') #save it into object
+#load() #for data in .RData this happens automatically
+load(file='./Data/KC2.RData')
+load(file='./Data/KC3.RData')
+
+df2[df2$hostel == TRUE,][1:2] #stay in hostel
+?which
+which(df2$hostel==TRUE) #using which comad Tells indices
+df2[which(df2$hostel == TRUE),][c(1,2,4,5)] #in hostel
+df2[which(!df2$hostel == TRUE),][c(1,2,4,5)] #not in hostel
+
+#Sort
+
