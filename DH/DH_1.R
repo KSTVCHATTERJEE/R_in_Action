@@ -25,3 +25,14 @@ df2$age > 30
 df2[df2$age > 30,][1:2]
 df2[df2$gender == 'M' & df2$course == 'PGDDS',][1:2]
 df2[df2$gender == 'M' & df2$course == 'PGDDS',1:2]
+summary(df2)
+str(df2)
+?write.csv
+write.csv(x=df2,file='./Data/Kaustav.csv') #save to CSV
+saveRDS(object=df2,file='./Data/KC.RDS') #only 1 object at a time
+markstotal <- runif(11,50,150)
+markstotal
+save(markstotal,df2,file='./Data/KC2.RData') #save multiple objects in R
+save.image(file='./Data/KC3.RData') #save all current objects/multiple objects in R
+
+readRDS(file='./Data/KC.RDS')
