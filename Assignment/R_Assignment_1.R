@@ -41,8 +41,6 @@ mean_Q2_3 <- sum(freq_obs_Q2_3)/sum(no_of_students_Q2_3)
 mean_Q2_3
 x_lab <- paste(marks_lowerlimit,marks_upperlimit,sep='-')
 x_lab
-barplot(no_of_students_Q2_3,names.arg = x_lab,xlab='Marks',ylab='No. of students')
-
 
 #Q3
 
