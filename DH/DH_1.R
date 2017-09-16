@@ -49,5 +49,13 @@ which(df2$hostel==TRUE) #using which comad Tells indices
 df2[which(df2$hostel == TRUE),][c(1,2,4,5)] #in hostel
 df2[which(!df2$hostel == TRUE),][c(1,2,4,5)] #not in hostel
 
-#Sort
+feestatus <- function(x) {
+  if(x >= 150000)
+    print(paste(i,df2$name[i], x,'-Fee Paid'))
+else
+  print(paste(i, df2$name[i], x, '-Fee Not Paid -xxxx'))
+}
+
+for(i in c(1:11))
+  feestatus(df2$fees[i])
 
