@@ -1,7 +1,7 @@
-df <- read.csv(file='./Data/dsstudents2.csv')
-df
-anyNA(df)
-is.na(df)
+df <- read.csv(file='./Data/dsstudents2.csv') #Data stored in Data Frame
+df #data frame
+anyNA(df) #returns whether there is any missing value in the whole df
+is.na(df) #returns whether there is any missing value in each column
 table(is.na(df))
 all(is.na(df))
 complete.cases(df)
