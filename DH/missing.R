@@ -5,6 +5,7 @@ is.na(df) #returns whether there is any missing value in each column
 table(is.na(df))
 all(is.na(df))
 complete.cases(df)
+?complete.cases
 !complete.cases(df)
 sum(complete.cases(df))
 sum(!complete.cases(df))
