@@ -44,22 +44,14 @@ df3[,c('excel')] = as.numeric(df3[,c('excel')])
 df3[,c('sql')] = as.numeric(df3[,c('sql')])
 df3[,c('stats')] = as.numeric(df3[,c('stats')])
 levels(df3$gender)[3] <- 'M'
-df3$gender[is.na(df3$gender)] <- 'M' # replacing NA with M
-df3
-df3$rpgm[is.na(df3$rpgm)] <- mean(df3$rpgm,na.rm=T)#replacing NA with mean of rpgm
-df3$excel[is.na(df3$excel)] <- mean(df3$excel,na.rm=T)#replacing NA with mean of excel
-df3$sql[is.na(df3$sql)] <- mean(df3$sql,na.rm=T)#replacing NA with mean of sql
-df3$stats[is.na(df3$stats)] <- mean(df3$stats,na.rm=T)#replacing NA with mean of
-sum(is.na(df3))
-str(df3)
-df3$rpgm <- ceiling(df3$rpgm)
-df3$excel <- ceiling(df3$excel)
-df3$sql <- ceiling(df3$sql)
-df3$stats <- ceiling(df3$stats)
-df3
-df3$gender
-df3$gender[df3$rollno==17000] <- 'M'
-df3
+df3$gender[is.na(df3$gender)] <- 'M' # replacing NA with male
+#We will be replacing NA values of subject marks with the mean of the subject marks
+df3$rpgm[is.na(df3$rpgm)] <- ceiling(mean(df3$rpgm,na.rm=T))
+df3$excel[is.na(df3$excel)] <- ceiling(mean(df3$excel,na.rm=T))
+df3$sql[is.na(df3$sql)] <- ceiling(mean(df3$sql,na.rm=T))
+df3$stats[is.na(df3$stats)] <-ceiling(mean(df3$stats,na.rm=T))
+sum(is.na(df3)) #only 1 NA value left
+df3 #final updated data frame
 
 df3a <- df3[,c(11,12,13,14)]
 df3a
