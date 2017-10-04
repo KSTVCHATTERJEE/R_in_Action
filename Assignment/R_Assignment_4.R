@@ -53,17 +53,26 @@ df3$stats[is.na(df3$stats)] <-ceiling(mean(df3$stats,na.rm=T))
 sum(is.na(df3)) #only 1 NA value left
 df3 #final updated data frame
 
+#Summary Tables ----
+#Summary Table 1
 df3a <- df3[,c(11,12,13,14)]
 df3a
 rownames(df3a) <- df3$rollno
 df3a
 round(addmargins(as.table(as.matrix(df3a)),c(2,1,1),list(sum,mean,median)))
+
+#Summary Table 2
 t1 <- table(df3$course,df3$gender)
 addmargins(t1)
+
+#Summary Table 3
 prop.table(t1)
-df3c <- df3[,c(1,2,11,12,13,14)]# creating dataframe df3c having rollno,names & subject marks
+
+
+#Summary Table 4
+df3c <- df3[,c(1,2,11,12,13,14)]
 df3c
-df3c$total <- rowMeans(df3c[,c(3:6)])#creating total column
+df3c$total <- rowMeans(df3c[,c(3:6)])
 df3c
 grades <- function(x){
   if (x > 70){
@@ -73,33 +82,36 @@ grades <- function(x){
   } else {
     print('C')
   }
-}# creating function for grades
+}
 for (i in c(1:12)){
-  df3c$grade[i] <- grades(df3c$total[i])# for loop for giving grades according to avg. marks per row
+  df3c$grade[i] <- grades(df3c$total[i])
 }
 df3c
-df3c$ranks <- rank(-df3c$total)#rank 1 to largest total marks
+df3c$ranks <- rank(-df3c$total)
 df3c
-df3c$name[df3c$ranks==5]#gives Shruti Sinha-5th rank holder
+df3c$name[df3c$ranks==5]
 df3
-#Rowwise & Columnwise means-Pending
-df4 <- df3[,c(3,11,12,13,14)]
+
+#Summary Table 5
+df4 <- df3c[,c(3,11,12,13,14)]
 df4
 
-#split wrt course,wrt gender-hostel
-split(df3[1:3],df3$course)#split according to course
-split(df3[1:3],list(df3$gender,df3$hostel))#split wrt gender-hostel
-#adding bigdata marks and scaling
+#Summary Table 6
+split(df3[1:3],df3$course)
+split(df3[1:3],list(df3$gender,df3$hostel))
+
+#Summary Table 7
 bigdata <- ceiling(runif(12,100,150))
 bigdata
-df3d <- df3#creating new dataframe - df3d
+df3d <- df3
 df3d
-df3d$bigdata <- bigdata#adding bigdata to df3d
+df3d$bigdata <- bigdata
 df3d
-df3d$bigdataS <- scale(df3d$bigdata,center=F)#scaling bigdata marks
+df3d$bigdataS <- ceiling((scale(df3d$bigdata,center=F,scale=150))*100)
 df3d
-#creating barplot
+
+#Barplot
 df3e <- df3d[,c('rpgm','excel','sql','stats','bigdata')]
 df3e
 g1 <- colMeans(df3e)
-barplot(g1,main = 'Average Marks',ylim=c(0,140))#barplot of average marks
+barplot(g1,main = 'Average Marks',ylim=c(0,140))
