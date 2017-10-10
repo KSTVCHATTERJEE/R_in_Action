@@ -93,8 +93,7 @@ df3c$name[df3c$ranks==5]
 df3
 
 #Summary Table 5
-df4 <- df3c[,c(3,11,12,13,14)]
-df4
+aggregate(df4[c("rpgm","sql","excel","stats")],by=list(df4$course),FUN=sum)
 
 #Summary Table 6
 split(df3[1:3],df3$course)
