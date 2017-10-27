@@ -22,3 +22,10 @@ plot(fit3)
 
 fit4 <- update(fit3,~.-age,-indus)
 summary(fit4)
+
+#Nonlinear terms and interaction
+fit5 <- lm(medv~lstat*age,Boston)
+summary(fit5)
+
+fit6 <- lm(medv~lstat+I(lstat^2),Boston)
+summary(fit6)
