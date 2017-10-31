@@ -15,7 +15,8 @@ plot(X,Y,main='Plot between X and Y')
 abline(lm(Y~X),col='red')
 fit=lm(Y~X)
 fit
-text(3,6,fit)
+text(x=X,y=Y,labels=paste0('(',X,',',Y,')'),cex=.7,col='red')
+text(x=4,y=10,'Kaustav',cex=1.5)
 
 df$x = round(X-mean(X),2)
 df$y = round(Y-mean(Y),2)
@@ -49,3 +50,42 @@ R2
 n=length(X)
 stderror = sqrt(sum((df$SSe)/(n-2)))
 stderror
+
+SSR = sum(df$SSr)
+SSE = sum(df$SSe)
+p = 1 #no of IV
+(MSR=SSR/p)
+(MSE=SSE/(n-p-1))
+(Fstats = MSR/MSE)
+summary(fit)
+
+
+
+
+women
+attach(women)
+cor.test(weight,height)
+fit2 = lm(weight~height,data=women)
+fit2
+
+plot(x=height,y=weight)
+abline(fit2,col='blue')
+
+summary(fit2)
+
+fitted(fit2)
+
+fit3 <- lm(weight~height+I(height^2),data=women)
+fit3
+lines(women$height,fitted(fit3))
+str(women)
+summary(women)
+
+fit4 <- lm(weight~height+I(height^2)+I(height^3),data=women)
+fit4
+lines(women$height,fitted(fit4))
+summary(fit4)
+
+car::scatterplot(weight~height,data=women,spread=FALSE, 
+                 lty.smooth=2,pch=19,main="Women age 30-39", xlab="Height(inches)",
+                 ylab="Weight (lbs)")
