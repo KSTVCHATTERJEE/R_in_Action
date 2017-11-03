@@ -13,3 +13,8 @@ sapply(mtcars,fivenum)
 
 library(Hmisc)
 describe(mtcars[vars])
+
+alpha=0.05
+conflevel=00.95
+alpha2=alpha/2
+qt(p=0.975,df=11-1)
