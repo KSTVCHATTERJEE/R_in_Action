@@ -46,6 +46,7 @@ med
 sweep(attitude,2,med,FUN="-")
 
 A <- array(c(1:24),dim=c(4,3,2))
+A
 sweep(A,1,5,FUN="-")
 
 min_A = apply(A,1,min)
@@ -67,14 +68,15 @@ melt(x)
 is.na(x)
 x[!complete.cases(x),]
 colSums(is.na(x))
-x$age[is.na(x$age)] = 25
-x$weight[is.na(x$weight)] = 72
+y=melt(x)
+y1=y[-c(4,6),]
+y1
 x
 y = melt(x)
 y
 dcast(y,subject~variable)
-
-
+acast(y,subject~variable)
+?acast
 #Q6 ----
 rollno = c(17010,17045,17012,17087,17057,17056,17032,17084,17078,17018,17013)
 sname = c('Achal Kumar','Apoorva Karn','Goldie Sahni','Hitesh Mann','Kaustav Chatterjee','Meena Srisha Valavala','Rashmi Ranjan Mangaraj','Shruti Sinha','Shubham Pujan','Vijay Pal Singh','Lalit Sahni')
