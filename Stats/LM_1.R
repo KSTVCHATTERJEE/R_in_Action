@@ -89,3 +89,16 @@ summary(fit4)
 car::scatterplot(weight~height,data=women,spread=FALSE, 
                  lty.smooth=2,pch=19,main="Women age 30-39", xlab="Height(inches)",
                  ylab="Weight (lbs)")
+
+women
+str(women)
+fit=lm(weight~height,data=women)
+fit
+df1 = data.frame(h=women$height,w=women$weight,W=round(fitted(fit),2),R=round(residuals(fit),2))
+df1
+plot(fit)
+plot(y=weight,x=height)
+abline(fit,col="red")
+fit2 = lm(weight~height+I(height^2))
+fit2
+plot(fit2)
