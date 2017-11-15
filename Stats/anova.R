@@ -6,5 +6,30 @@ df=data.frame(sup1,sup2,sup3,sup4)
 df
 colMeans(df)
 round((addmargins(as.matrix(df),c(1,2),FUN=list(list(mean,sd),list(mean)))),1)
-stack(df)
-unstack(stack(df))
+dfstack = stack(df)
+str(dfstack)
+aggregate(dfstack$values,by=list(dfstack$ind),FUN=mean)
+aggregate(dfstack$values,by=list(dfstack$ind),FUN=sd)
+fit1w = aov(values~ind,data=dfstack)
+summary(fit1w)
+qf(0.95,3,16)
+boxplot(dfstack$values)
+boxplot(df)
+boxplot(values~ind,data=dfstack)
+
+gplots::plotmeans(values~ind,data=dfstack)
+abline(h=colMeans(df))
+
+TukeyHSD(fit1w)
+plot(TukeyHSD(fit1w))
+
+library(multcomp)
+
+tuk = glht(fit1w, linfct = mcp(ind='Tukey'))
+plot(cld(tuk,level=0.05))
+
+car::qqPlot(fit1w,simulate=T,labels=F)
+
+bartlett.test(values~ind,data=dfstack)
+
+car::outlierTest(fit1w)
