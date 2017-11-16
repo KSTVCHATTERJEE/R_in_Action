@@ -1,0 +1,17 @@
+x = c(1,3,5,7,9,2,4,6,8,10)
+(x1 = scale(x,scale=F,center=F))
+(xc = scale(x,scale=F,center=T))
+(xc1 = scale(x,scale=F,center=4))
+cbind(x,-4,xc1)
+(xs = scale(x,scale=T,center=F))
+as.vector(round(xs,2))
+(rmse=sqrt(sum(x^2)/(length(x)-1)))
+(xsc=scale(x,scale=T,center=T))
+sd(x)
+round((zscore = (x - mean(x))/sd(x)),2)
+
+x <- matrix(1:10,ncol=2)
+x
+(centered.x <- scale(x,center=T,scale=FALSE))
+(centered.x <- scale(x,center=c(2,7),scale=FALSE))
+(centered.scaled.x <- scale(x,center=T,scale=T))
