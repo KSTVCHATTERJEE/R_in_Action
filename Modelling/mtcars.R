@@ -1,0 +1,6 @@
+library(leaps)
+leaps <- regsubsets(mpg~wt+cyl+hp+am,data=mtcars,nbest=10)
+summary(leaps)
+plot(leaps,scale="r2")
+library(car)
+subsets(leaps,statistic="rsq")
