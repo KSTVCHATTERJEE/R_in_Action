@@ -15,7 +15,7 @@ vec5
 vec6=vec1+vec5
 vec6
 length(vec6)#length of vec6
-vec1[vec1>2]#will print those elemets whuch are greater than 2
+vec1[vec1>2]#will print those elemets which are greater than 2
 vector("numeric",5)#will create a blank numeric vector
 u=c(10,20,30)
 v=c(1,2,3,4,5,6,7,8,9)
