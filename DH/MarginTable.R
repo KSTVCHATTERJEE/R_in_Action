@@ -8,17 +8,24 @@ mps
 df=data.frame(parties1,states1,mps)
 df
 
-
+?table
 table(df$parties1)
 
 #table does not work for data frame
 ftable(df)
-table(df[,c('parties1','states1')], dnn=list('Political Parties','States of India'))
+?ftable
+t=table(df[,c('parties1','states1')], dnn=list('Political Parties','States of India'))
+t
+addmargins(t,c(1,2),sum)
+apply(t,2,sum)
 str(df)
+?xtabs
 xtabs(mps~states1+parties1,data=df)
 statesel = c('up','delhi')
 xtabs(mps~parties1 + states1, data=df, subset=states1 %in% statesel)
 xtabs(mps~parties1 + states1, data=df, subset=states1 %in% statesel,drop.unused.levels=T)
+partysel = c('aap','bjp')
+xtabs(mps~states1 + parties1, data=df, subset=parties1 %in% partysel,drop.unused.levels=T)
 
 partysel <- c('bjp')
 xtabs(mps~parties1+states1,data=df,subset=parties1 %in% partysel & states1 %in% statesel,drop.unused.levels=T)
@@ -30,6 +37,7 @@ matresults
 str(matresults)
 margin.table(matresults, margin=NULL)
 sum(mps)
+?margin.table
 margin.table(matresults, margin=1)
 margin.table(matresults, margin=2)
 margin.table(matresults, margin=3)
@@ -47,3 +55,4 @@ addmargins(p2)
 addmargins(p2,1)
 addmargins(p2,2)
 
+?prop.table
