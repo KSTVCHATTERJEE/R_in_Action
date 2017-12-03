@@ -1,16 +1,18 @@
 set.seed(1123)
 marks <- ceiling(runif(11,5,10))
 marks
-marks
 
 #sort
+?sort
 sort(marks)
 sort(marks,decreasing = TRUE)
 rev(sort(marks))
+?rev
 
 #order
+?order
 order(marks)
-marks
+marks;order(marks)
 marks[order(marks)]
 order(marks, decreasing=T)
 order(-marks)
@@ -46,4 +48,4 @@ sort(marks2,na.last='keep')
 length(sort(marks2,na.last='keep'))
 
 rank(marks2,na.last=FALSE)
-rank(marks2,na.last='keep')
+length(rank(marks2,na.last='keep'))
