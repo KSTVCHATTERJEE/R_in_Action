@@ -2,8 +2,11 @@ df <- read.csv(file='./Data/dsstudents2.csv') #Data stored in Data Frame
 df #data frame
 anyNA(df) #returns whether there is any missing value in the whole df
 is.na(df) #returns whether there is any missing value in each column
+?anyNA
+?is.na
 table(is.na(df))
 all(is.na(df))
+?all
 complete.cases(df)
 ?complete.cases
 !complete.cases(df)
@@ -19,7 +22,7 @@ na.omit(df)[1:2]
 colSums(is.na(df))
 apply(df,2,function(x) sum (is.na(x)))
 apply(is.na(df),2,sum)
-length(which (is.na(df['excel']==T)))
+length(which(is.na(df['excel']==T)))
 df$excel[is.na(df$excel)] = mean(df$excel,na.rm=T)
 df$excel
 df$sql

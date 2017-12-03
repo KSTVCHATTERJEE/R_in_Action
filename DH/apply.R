@@ -62,11 +62,13 @@ M+c(1,2)
 M
 M+c(1,2,3)
 cbind(M, M+c(1,2,3))
-
-dx=colMeans(M)
+?sweep
+(dx=colMeans(M))
 sweep(M,2,dx,FUN="-")
 rowMeans(M)
 sweep(M,1,rowMeans(M),FUN="+")
+apply(M,1,mean)
+addmargins(M,2,mean)
 sweep(M,1,rowMeans(M),FUN="+")
 sweep(M,c(1,2),c(1:12),FUN="+")
 
