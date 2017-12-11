@@ -21,14 +21,15 @@ prop.table(t1)*100
 df2[order(df2$saleamt,-df2$advamt),]
 with(df2,plot(x=dept,y=saleamt))
 within(df2,profit <- saleamt-advamt)
-sweep(df2[2:3],1,1,FUN="+")
+sweep(df2[2:3],2,1,FUN="+")
 library(reshape2)
 melt(df2,id="dept")
 
 #Descriptive Stats ----
 plot(y=df2$saleamt,x=df2$advamt)
 abline(lm(df2$saleamt~df2$advamt))
-cor(df2$saleamt,df2$advamt)
+cor(df$saleamt,df$advamt)
+df$saleamt
 
 #Graph ----
 with(df,boxplot(saleamt~dept))
