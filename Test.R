@@ -75,5 +75,5 @@ apply(subarray,c(2),sd)
 (school = "Data Science")
 (course = c("PG","MSc"))
 (l1=list(rollno,school,course))
-length(l1$rollno)
+length(l1[[1]])
 
