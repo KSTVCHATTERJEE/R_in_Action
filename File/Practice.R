@@ -26,3 +26,32 @@ boxplot(ds1,ds2,ds3)
 years <- c(1961,1971,1981,1991,2001)
 sexratio <- c(941,930,934,927,933)
 plot(years,sexratio,type='l')
+
+#Mock Test Paper
+(x=11:20)
+for(i in 1:10){
+  if((i==2) | (i==5) | (i==7))
+    print(x[i]^2)
+}
+
+sqroot <- function(i){
+    print(sqrt(x[i]))
+  }
+for(j in 1:10){
+  sqroot(j)
+}
+
+f <- function(a,b){a^2}
+f(2)
+
+paste("a","b",sep=":")
+
+log(-1)
+args(f)
+
+seq(4)
+seq_along(4)
+?seq_along
+v1=x+c(NA)
+class(v1)
+paste("Data","Science","from","MUIT",sep="-")

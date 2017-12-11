@@ -1,19 +1,13 @@
-vec1=c(1,4,6,8,10)#a vector
-vec1
-vec2=c(1:100)#a vector printing all natural numbers from 1 to 100
-vec2
-vec3=c(vec1,0,vec2)#concatenating vec1, vec2 and 0
-vec3
+(vec1=c(1,4,6,8,10))#a vector
+(vec2=c(1:100))#a vector printing all natural numbers from 1 to 100
+(vec3=c(vec1,0,vec2))#concatenating vec1, vec2 and 0
 vec1[5]#5th element of vec1
 vec1[3]#3rd element of vec1
 vec1[3]=12#replaces the 3rd value of vec1 by 12
 vec1
-vec4=seq(from=0,to=1,by=0.25)#sequence of 0 to 1 in steps of 0.25
-vec4
-vec5=1/vec1# adding vec1 and vec5
-vec5
-vec6=vec1+vec5
-vec6
+(vec4=seq(from=0,to=1,by=0.25))#sequence of 0 to 1 in steps of 0.25
+(vec5=1/vec1)# dividing vec5 by vec1
+(vec6=vec1+vec5)#adding vec1 and vec5
 length(vec6)#length of vec6
 vec1[vec1>2]#will print those elemets which are greater than 2
 vector("numeric",5)#will create a blank numeric vector
