@@ -5,15 +5,15 @@ mx <- matrix(x,nrow=5,byrow=F)
 mx
 apply(mx,1,prod)
 apply(mx,2,sum)
-mx_new <- mx%%10
+mx_new <- sweep(mx,1,10,FUN="%%")
 mx_new
 mx_new_2 = sweep(mx,1,2,FUN='%%')
 mx_new_2
-apply(mx_new,2,sum)
+apply(mx_new_2,2,sum)
 
-x = attach(iris)
-x
-ag <- aggregate(x,by=list(i$Species),FUN=mean,na.rm=TRUE)
+library(datasets)
+iris
+ag <- aggregate(iris$Sepal.Length,list(x$Species),FUN=mean,na.rm=TRUE)
 ag
 
 #Q2----
@@ -21,20 +21,17 @@ e <- new.env()
 e$a <- matrix(1:12,nrow=4)
 e$b <- array(c(1:3*4*2),dim=c(3,4,2))
 e$a;e$b
-mean(e$a)
-mean(e$b)
+eapply(e,mean)
 class(e$a)
 class(e$b)
 
 #Q3 ----
-list1 = list(1:20,55:100,mtcars$mpg,mtcars$wt)
-list1 
+(list1 = list(1:20,55:100,mtcars$mpg,mtcars$wt))
 lapply(list1,sum)
 (vector_results_q3 = sapply(list1,sum))
-q()
+
 
 #Q4 ----
-
 a1 <- array(c(1:24),dim=c(4,3,2))
 a1
 sweep(a1,1,mean(a1),FUN="-")
@@ -74,7 +71,7 @@ y1
 x
 y = melt(x)
 y
-dcast(y,subject~variable)
+dcast(y1,subject~variable)
 acast(y,subject~variable)
 ?acast
 #Q6 ----
@@ -102,6 +99,7 @@ merge(df1,df3,by.x='rollno',by.y = 'ID',all.y=T)
 classmarks=data.frame(classA = c(10,14,15),classB = c(20,25,27),classC = c(13,15,17))
 classmarks
 stack(classmarks)
+?stack
 d=stack(classmarks,c("classA","classC"))
 d
 unstack(d)
@@ -109,16 +107,8 @@ unstack(d)
 #Q8 ----
 df_new=read.csv("./Data/dsstudents.csv",na.strings=' ')
 df_new
-b1 = by(df_new[,c(11)],INDICES=df_new$course,summary)
-b1
-b2 = by(df_new[,c(12)],INDICES=df_new$course,summary)
-b2
-b3 = by(df_new[,c(13)],INDICES=df_new$course,summary)
-b3
-b4 = by(df_new[,c(14)],INDICES=df_new$course,summary)
-b4
-b5 = by(df_new[,c(7)],INDICES=df_new$course,summary)
-b5
+b = by(df_new[,c(11,12,13,14,7)],INDICES=df_new$course,summary)
+b
 
 #Q9 ----
 ag2 = aggregate(mtcars,by=list(mtcars$cyl),FUN='mean')
