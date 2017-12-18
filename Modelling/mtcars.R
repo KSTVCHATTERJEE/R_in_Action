@@ -134,3 +134,5 @@ caret::confusionMatrix(xtab)
 
 car::vif(fit5)
 sqrt(car::vif(fit5))>2
+
+step1=stepAIC(fit.full,direction="backward")
