@@ -57,3 +57,11 @@ summary(Model7)
 
 Model8 <- lm(Life.Exp ~ Population + Murder + HS.Grad + Frost, data=dataset)
 summary(Model8)
+
+library(car)
+as.data.frame(vif(Model7))
+
+pred_life = predict(Model8)
+dataset$pred_life=pred_life
+dataset$pred_life
+plot(dataset$state.name,dataset$pred_life)
