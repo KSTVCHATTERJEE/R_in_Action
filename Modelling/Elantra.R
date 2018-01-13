@@ -51,3 +51,9 @@ str(training_set)
 
 Model18 <- lm(ElantraSales~Month+Year+Unemployment+Queries+CPI_energy+CPI_all,data=training_set)
 summary(Model18)
+
+Model19 <- lm(ElantraSales ~ Month+Unemployment+Queries+CPI_energy+CPI_all,data=training_set)
+summary(Model19)
+
+Model20 <- lm(ElantraSales ~ Month+Unemployment+CPI_energy+CPI_all,data=training_set)
+summary(Model20)
