@@ -38,3 +38,32 @@ summary(Model3)
 
 Model4 <- glm(Survived~Pclass+Sex+Age+SibSp+I(Embarked=='S'),family=binomial(link='logit'),data=train_t)
 summary(Model4)
+
+str(train_t$Pclass)
+
+Model4$coefficients
+exp(Model4$coefficients)
+
+library(car)
+vif(Model4)
+
+anova(Model4,test="Chisq")
+
+library(BaylorEdPsych)
+PseudoR2(Model4)
+
+pred_sur = predict(Model4,newdata=train_v,type="response")
+pred_sur_n = ifelse(pred_sur>0.5,1,0)
+
+library(caret)
+confusionMatrix(pred_sur_n,train_v$Survived)
+
+library(ROCR)
+
+pr <- prediction(pred_sur,train_v$Survived)
+prf <- performance(pr,measure="tpr",x.measure="fpr")
+plot(prf)
+
+auc <- performance(pr,measure="auc")
+auc <- auc@y.values[[1]]
+auc
