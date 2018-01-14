@@ -29,3 +29,9 @@ k <- 5
 AirlineCluster_k <- kmeans(airlinesNorm, centers=k, iter.max = 1000)
 table(AirlineCluster_k$cluster)
 AirlineCluster_k$centers
+
+Bal_mean_k <- aggregate(data, by=list(cluster=AirlineCluster_k$cluster),mean)
+Bal_mean_k
+
+Airines_h <- data.frame(data,AirlineCluster)
+Airines_h
