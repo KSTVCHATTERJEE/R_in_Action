@@ -48,3 +48,19 @@ select(iris,matches(".p."))
 select(iris,matches("p."))
 
 dplyr::summarise_each(mtcars, funs(mean,median))
+
+
+mtcars %>% group_by(cyl,am) %>% summarise_all(mean)
+
+dplyr::mutate_each(mtcars,funs(min_rank))
+
+dplyr::transmute(iris, sepal=Sepal.Length+Sepal.Width)
+
+a=data.frame(x1=c('A','B','C'),x2=c(1,2,3))
+b=data.frame(x1=c('A','B','D'),x3=c('T','F','T'))
+a
+b
+dplyr::left_join(a,b,by="x1")
+dplyr::right_join(a,b,by="x1")
+dplyr::inner_join(a,b,by="x1")
+dplyr::full_join(a,b,by="x1")
