@@ -81,3 +81,4 @@ ad_org_train$durationnew
 
 cor(ad_org_train[,c(2,3,4,5,6,13)])
 
+ad_org_train$category=as.factor(ad_org_train$category)
