@@ -116,3 +116,29 @@ fit=lm(adview~views+likes+dislikes+comment+durationnew,data=train)
 summary(fit)
 plot(train$adview,ylim=c(0,5000),xlim=c(0,15000))
 head(train$adview)
+
+library(rpart)
+cart=rpart(adview~views+likes+dislikes+comment+durationnew+category,data=train,method="anova")
+summary(cart)
+printcp(cart)
+library(rpart.plot)
+rpart.plot(cart)
+plotcp(cart)
+rsq.rpart(cart)
+bestcp = cart$cptable[which.min(cart$cptable[,"xerror"]),"CP"]
+bestcp
+cart.pruned = prune(cart,cp=bestcp)
+cart.pruned
+
+pred=predict(cart,data=train)
+pred
+library(Metrics)
+rmse(train$adview,pred)
+fix(pred)
+
+2743178912*1.660*
+library(randomForest)
+rf=randomForest(adview~views+likes+dislikes+comment+durationnew+category,data=train)
+colSums(is.na(train))
+str(train)
+train$category=as.factor(train$category)
