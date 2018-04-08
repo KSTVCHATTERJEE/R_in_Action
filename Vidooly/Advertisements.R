@@ -82,3 +82,37 @@ ad_org_train$durationnew
 cor(ad_org_train[,c(2,3,4,5,6,13)])
 
 ad_org_train$category=as.factor(ad_org_train$category)
+
+train=ad_org_train
+fix(train)
+str(train)
+boxplot(train$views)
+boxplot(train$likes)
+boxplot(train$dislikes)
+boxplot(train$comment)
+boxplot(train$durationnew)
+str(train)
+V=c(3,4,5,6,13)
+for(j in V)
+{
+out1=(quantile(train[,j],0.25))-(1.5*IQR(train[,j]))
+out2=(quantile(train[,j],0.75))+(1.5*IQR(train[,j]))
+for (i in 1:nrow(train))
+{
+if((train[i,j]<out1) | (train[i,j]>out2))
+{
+train[i,j]=median(train[,j])
+}
+}
+}
+train$views
+boxplot(train$views)
+boxplot(train$likes)
+boxplot(train$dislikes)
+boxplot(train$comment)
+boxplot(train$durationnew)
+
+fit=lm(adview~views+comment+durationnew,data=train)
+summary(fit)
+library(randomForest)
+rf=randomForest(adview~views+likes+dislikes+comment+category+durationnew,data=train)
