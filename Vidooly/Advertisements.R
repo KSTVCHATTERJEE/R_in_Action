@@ -114,3 +114,5 @@ boxplot(train$durationnew)
 
 fit=lm(adview~views+likes+dislikes+comment+durationnew,data=train)
 summary(fit)
+plot(train$adview,ylim=c(0,5000),xlim=c(0,15000))
+head(train$adview)
