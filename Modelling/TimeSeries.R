@@ -32,6 +32,7 @@ plot(diff(log10(timedata),differences = 1),ylab="Diff(Sales)",xlab="Year",main="
 LDTSdata=diff(log10(timedata),differences = 1)
 require(forecast)
 adf.test(LDTSdata,alternative="stationary")
+adf.test(timedata,alternative="stationary")
 
 
 kpss.test(LDTSdata)

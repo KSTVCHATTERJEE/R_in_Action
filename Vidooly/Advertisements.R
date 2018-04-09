@@ -116,29 +116,54 @@ fit=lm(adview~views+likes+dislikes+comment+durationnew,data=train)
 summary(fit)
 plot(train$adview,ylim=c(0,5000),xlim=c(0,15000))
 head(train$adview)
+str(train)
+for (i in c(3,4,5,6,13))
+{
+train[,i]=as.integer(train[,i])
+}
 
-library(rpart)
-cart=rpart(adview~views+likes+dislikes+comment+durationnew+category,data=train,method="anova")
-summary(cart)
-printcp(cart)
-library(rpart.plot)
-rpart.plot(cart)
-plotcp(cart)
-rsq.rpart(cart)
-bestcp = cart$cptable[which.min(cart$cptable[,"xerror"]),"CP"]
-bestcp
-cart.pruned = prune(cart,cp=bestcp)
-cart.pruned
-
-pred=predict(cart,data=train)
-pred
-library(Metrics)
-rmse(train$adview,pred)
-fix(pred)
-
-2743178912*1.660*
 library(randomForest)
-rf=randomForest(adview~views+likes+dislikes+comment+durationnew+category,data=train)
+rf=randomForest(adview~views,data=train,nodesize=5)
 colSums(is.na(train))
 str(train)
 train$category=as.factor(train$category)
+
+train$views
+summary(train$views)
+
+cbind(train,views2)
+rm(train$views2)
+train = train[,-c(14,15)]
+str(train)
+for (i in 1:nrow(train))
+{
+if((train[i,3]>=49) & (train[i,3]<=282943))
+{
+  train[i,14]=1;
+}
+if((train[i,3]>=282944) & (train[i,3]<=565837))
+{
+  train[i,14]=2;
+}
+if((train[i,3]>=565838) & (train[i,3]<=848731))
+{
+  train[i,14]=3;
+}
+if((train[i,3]>=848732) & (train[i,3]<=1131625))
+{
+  train[i,14]=4;
+}
+if((train[i,3]>=1131626) & (train[i,3]<=1414521))
+{
+  train[i,14]=5;
+}
+}
+fix(train)
+train$views2=factor(train$views2,levels=c(1,2,3,4,5))
+train$views2
+
+library(rpart)
+library(rpart.plot)
+fit1=rpart(adview~views2+category,data=train)
+summary(fit1)
+rpart.plot(fit1)
