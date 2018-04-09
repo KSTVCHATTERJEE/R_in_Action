@@ -105,25 +105,19 @@ train[i,j]=median(train[,j])
 }
 }
 }
-train$views
+
 boxplot(train$views)
 boxplot(train$likes)
 boxplot(train$dislikes)
 boxplot(train$comment)
 boxplot(train$durationnew)
 
-fit=lm(adview~views+likes+dislikes+comment+durationnew,data=train)
-summary(fit)
-plot(train$adview,ylim=c(0,5000),xlim=c(0,15000))
-head(train$adview)
 str(train)
 for (i in c(3,4,5,6,13))
 {
 train[,i]=as.integer(train[,i])
 }
 
-library(randomForest)
-rf=randomForest(adview~views,data=train,nodesize=5)
 colSums(is.na(train))
 str(train)
 train$category=as.factor(train$category)
@@ -131,10 +125,7 @@ train$category=as.factor(train$category)
 train$views
 summary(train$views)
 
-cbind(train,views2)
-rm(train$views2)
-train = train[,-c(14,15)]
-str(train)
+#views2
 for (i in 1:nrow(train))
 {
 if((train[i,3]>=49) & (train[i,3]<=282943))
@@ -158,12 +149,131 @@ if((train[i,3]>=1131626) & (train[i,3]<=1414521))
   train[i,14]=5;
 }
 }
-fix(train)
-train$views2=factor(train$views2,levels=c(1,2,3,4,5))
-train$views2
+#duration2
+for (i in 1:nrow(train))
+{
+  if((train[i,13]>=0) & (train[i,13]<=308))
+  {
+    train[i,15]=1;
+  }
+  if((train[i,13]>=309) & (train[i,13]<=617))
+  {
+    train[i,15]=2;
+  }
+  if((train[i,13]>=618) & (train[i,13]<=926))
+  {
+    train[i,15]=3;
+  }
+  if((train[i,13]>=927) & (train[i,13]<=1235))
+  {
+    train[i,15]=4;
+  }
+  if((train[i,13]>=1236) & (train[i,13]<=1541))
+  {
+    train[i,15]=5;
+  }
+}
+str(train)
 
-library(rpart)
-library(rpart.plot)
-fit1=rpart(adview~views2+category,data=train)
-summary(fit1)
-rpart.plot(fit1)
+#likes2
+for (i in 1:nrow(train))
+{
+  if((train[i,4]>=0) & (train[i,4]<=881))
+  {
+    train[i,16]=1;
+  }
+  if((train[i,4]>=882) & (train[i,4]<=1763))
+  {
+    train[i,16]=2;
+  }
+  if((train[i,4]>=1764) & (train[i,4]<=2645))
+  {
+    train[i,16]=3;
+  }
+  if((train[i,4]>=2646) & (train[i,4]<=3527))
+  {
+    train[i,16]=4;
+  }
+  if((train[i,4]>=3528) & (train[i,4]<=4403))
+  {
+    train[i,16]=5;
+  }
+}
+#dislikes2
+summary(train$dislikes)
+for (i in 1:nrow(train))
+{
+  if((train[i,5]>=0) & (train[i,5]<=81))
+  {
+    train[i,17]=1;
+  }
+  if((train[i,5]>=82) & (train[i,5]<=163))
+  {
+    train[i,17]=2;
+  }
+  if((train[i,5]>=164) & (train[i,5]<=245))
+  {
+    train[i,17]=3;
+  }
+  if((train[i,5]>=246) & (train[i,5]<=327))
+  {
+    train[i,17]=4;
+  }
+  if((train[i,5]>=328) & (train[i,5]<=404))
+  {
+    train[i,17]=5;
+  }
+}
+fix(train)
+#comments2
+summary(train$comment)
+for (i in 1:nrow(train))
+{
+  if((train[i,6]>=0) & (train[i,6]<=105))
+  {
+    train[i,18]=1;
+  }
+  if((train[i,6]>=106) & (train[i,6]<=211))
+  {
+    train[i,18]=2;
+  }
+  if((train[i,6]>=212) & (train[i,6]<=317))
+  {
+    train[i,18]=3;
+  }
+  if((train[i,6]>=318) & (train[i,5]<=423))
+  {
+    train[i,18]=4;
+  }
+  if((train[i,6]>=424) & (train[i,6]<=525))
+  {
+    train[i,18]=5;
+  }
+}
+colnames(train)[14]="views2"
+colnames(train)[15]="duration2"
+colnames(train)[16]="likes2"
+colnames(train)[17]="dislikes2"
+colnames(train)[18]="comment2"
+for(i in 14:18)
+{
+  train[,i]=factor(train[,i],levels=c(1,2,3,4,5))
+}
+str(train)
+train$category=factor(train$category)
+save(train,file="train.RDS")
+library(randomForest)
+fit=randomForest(adview~views2+duration2+likes2+dislikes2+comment2,data=train)
+fit
+summary(fit)
+
+pred=predict(fit,data=train)
+pred
+s=varImpPlot(fit)
+
+fit2=DAAG::cv.lm(adview~views2+duration2+likes2+dislikes2+comment2,data=train)
+summary(fit2)
+pred2=predict(fit,newdata=test)
+pred3=predict(fit,newdata=train)
+pred2
+cbind(train$adview,pred3)
