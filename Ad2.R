@@ -1,5 +1,5 @@
 ad_org_test=read.csv("F:/R_in_Action/Vidooly/ad_org_test.csv",stringsAsFactors = FALSE)
-ad_org_test
+str(ad_org_test)
 colSums(is.na(ad_org_test))
 
 for (i in 1:nrow(ad_org_test)){
