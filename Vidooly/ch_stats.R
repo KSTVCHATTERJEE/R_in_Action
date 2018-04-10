@@ -10,7 +10,7 @@ str(octmar)
 octmar$date=as.Date(octmar$date,format="%d-%m-%Y")
 octmar$date
 #Forecasting views 
-omn=as.data.frame(octmar[,c(5,2)])
+omn=as.data.frame(octmar[,c(5,2)])    
 colSums(is.na(octmar)) #Checking presence of NA values
 #We use 'xts' and 'zoo' library for this assignment
 library(xts)

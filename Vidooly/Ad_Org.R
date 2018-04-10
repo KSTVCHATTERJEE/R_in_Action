@@ -14,7 +14,7 @@ for (i in 1:14999){
     ad_org_train[i,j]=NA;
 }
 }
-}
+} 
 
 #Converting required columns into integer
 for (k in 3:6)
