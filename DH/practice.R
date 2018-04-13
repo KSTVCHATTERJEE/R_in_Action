@@ -1,0 +1,8 @@
+a=c(1,2,3)
+b=c(5,6,7)
+c=c("A","B","C")
+x=data.frame(a,b,c)
+a=c(1,2,3,10,5,4,78)
+order(a)
+rank(a)
+lapply(X,FUN=length)
